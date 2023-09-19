@@ -104,5 +104,5 @@ ui <- fluidPage(
       see <a href='https://academic.oup.com/bioinformatics/article/33/4/601/2593908' target='_blank'>Schwab et al. (2017)</a>.
       ")
     )),
-    HTML("<p>The R code for this application is available on <a href='https://github.com/sysbio-bioinf/GatekeepeR' target='_blank'>github</a>.</p>")
+    HTML("<p>The R code for this application is available on <a href='https://github.com/sysbio-bioinf/GatekeepR' target='_blank'>github</a>.</p>")
 ) #END of fluidPage
