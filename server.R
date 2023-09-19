@@ -64,7 +64,7 @@ server <- function(input, output, session) {
     sortedVB <- as.data.frame(t(sort(VBrounded, decreasing = TRUE)))
     rownames(sortedVB) <- "Vertex Betweeness"
     sortedDP <- as.data.frame(t(sort(DProunded, decreasing = TRUE)))
-    rownames(sortedDP) <- "Determinitive Power"
+    rownames(sortedDP) <- "Determinative Power"
     sortedZ <- as.data.frame(t(sort(Zrounded, decreasing = TRUE)))
     rownames(sortedZ) <- "Connectivity (z-transformed)"
     
@@ -203,7 +203,7 @@ server <- function(input, output, session) {
     
     #Tables with network measures
     #output$table <- renderTable(measuresmatrix, rownames=TRUE, colnames=TRUE)
-    output$table <- DT::renderDataTable(allTable, rownames=TRUE, colnames=c("Node", "Vertex Betweeness", "Determinitive Power", "Connectivity"))
+    output$table <- DT::renderDataTable(allTable, rownames=TRUE, colnames=c("Node", "Vertex Betweeness", "Determinative Power", "Connectivity"))
     output$sortedVBvec <- renderTable(sortedVB, rownames=TRUE, colnames=TRUE)
     output$sortedDPvec <- renderTable(sortedDP, rownames=TRUE, colnames=TRUE)
     output$sortedZvec <- renderTable(sortedZ, rownames=TRUE, colnames=TRUE)})
@@ -258,7 +258,7 @@ server <- function(input, output, session) {
       sortedVB <- as.data.frame(t(sort(VBrounded, decreasing = TRUE)))
       rownames(sortedVB) <- "Vertex Betweeness"
       sortedDP <- as.data.frame(t(sort(DProunded, decreasing = TRUE)))
-      rownames(sortedDP) <- "Determinitive Power"
+      rownames(sortedDP) <- "Determinative Power"
       sortedZ <- as.data.frame(t(sort(Zrounded, decreasing = TRUE)))
       rownames(sortedZ) <- "Connectivity (z-transformed)"
       
@@ -397,7 +397,7 @@ server <- function(input, output, session) {
       
       #Tables with network measures
       #output$table <- renderTable(measuresmatrix, rownames=TRUE, colnames=TRUE)
-      output$table <- DT::renderDataTable(allTable, rownames=TRUE, colnames=c("Node", "Vertex Betweeness", "Determinitive Power", "Connectivity"))
+      output$table <- DT::renderDataTable(allTable, rownames=TRUE, colnames=c("Node", "Vertex Betweeness", "Determinative Power", "Connectivity"))
       output$sortedVBvec <- renderTable(sortedVB, rownames=TRUE, colnames=TRUE)
       output$sortedDPvec <- renderTable(sortedDP, rownames=TRUE, colnames=TRUE)
       output$sortedZvec <- renderTable(sortedZ, rownames=TRUE, colnames=TRUE)
