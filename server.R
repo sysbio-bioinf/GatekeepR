@@ -217,11 +217,15 @@ server <- function(input, output, session) {
       print("Large observer triggered, recalculating measures...")
       #Print error if wrong file format is uploaded
       ending <- tools::file_ext(input$networkTXTfile$name)
-      if (ending != "txt"){
-        shinyalert("Wrong file format", "Input file needs to be in .txt format", type = "error")
+      if (ending %in% c("txt", "sbml") == FALSE){
+        shinyalert("Wrong file format", "Input file needs to be in .txt or .sbml format", type = "error")
       }
       
-      network <- BoolNet::loadNetwork(input$networkTXTfile$datapath)
+      if (ending == "txt"){
+        network <- BoolNet::loadNetwork(input$networkTXTfile$datapath)
+      } else if (ending == "sbml"){
+        network <- BoolNet::loadSBML(input$networkTXTfile$datapath)
+      }
       netsize <- length(network$genes)
       adjmat <- conv2adjmat(network)
       gr <- igraph::graph_from_adjacency_matrix(adjmat)
@@ -304,9 +308,19 @@ server <- function(input, output, session) {
                      })
                      
                      #List network rules at the bottom
+                     if (ending == "txt"){
                      output$rules <- renderText({
                        paste(readLines(input$networkTXTfile$datapath), collapse = "\n")
                      })
+                     } else if (ending == "sbml"){
+                       BoolNet::saveNetwork(network, file="sbmlrules_tempfile.txt")
+                       txtConvertedNetwork <- BoolNet::loadNetwork("sbmlrules_tempfile.txt")
+                       paste(txtConvertedNetwork)
+                       output$rules <- renderText({
+                         paste(readLines("sbmlrules_tempfile.txt"), collapse = "\n")
+                       })
+                       #file.remove("sbmlrules_tempfile.txt")
+                     }
                      
                      #PLOT OF INTERACTION GRAPH
                      output$intGraph <- renderPlot({
