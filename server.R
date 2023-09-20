@@ -308,19 +308,9 @@ server <- function(input, output, session) {
                      })
                      
                      #List network rules at the bottom
-                     if (ending == "txt"){
                      output$rules <- renderText({
-                       paste(readLines(input$networkTXTfile$datapath), collapse = "\n")
+                       paste(capture.output(print(network)), collapse = "\n")
                      })
-                     } else if (ending == "sbml"){
-                       BoolNet::saveNetwork(network, file="sbmlrules_tempfile.txt")
-                       txtConvertedNetwork <- BoolNet::loadNetwork("sbmlrules_tempfile.txt")
-                       paste(txtConvertedNetwork)
-                       output$rules <- renderText({
-                         paste(readLines("sbmlrules_tempfile.txt"), collapse = "\n")
-                       })
-                       #file.remove("sbmlrules_tempfile.txt")
-                     }
                      
                      #PLOT OF INTERACTION GRAPH
                      output$intGraph <- renderPlot({
